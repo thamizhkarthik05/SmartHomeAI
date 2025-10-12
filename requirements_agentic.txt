@@ -1,0 +1,172 @@
+# ============================================================================
+# AGENTIC AI REQUIREMENTS (LangGraph Integration)
+# ============================================================================
+# Add these to your existing requirements.txt when ready to implement
+# agentic AI features with LangGraph
+
+# Core LangGraph & LangChain
+langgraph>=0.0.55
+langchain>=0.1.0
+langchain-openai>=0.0.5
+langchain-community>=0.0.20
+
+# Vector Database (for memory/context)
+chromadb>=0.4.22          # Local vector DB (recommended for start)
+# OR
+# pinecone-client>=2.2.4  # Cloud vector DB (for production)
+
+# Embeddings
+sentence-transformers>=2.2.2  # For local embeddings (free)
+# openai>=1.0.0  # Already in main requirements
+
+# Async support
+aiohttp>=3.9.0
+asyncio>=3.4.3
+
+# Scheduling (for temporal planning)
+APScheduler>=3.10.0
+
+# Natural Language Processing
+spacy>=3.7.0              # For advanced NLP
+# python -m spacy download en_core_web_sm  # Download model after install
+
+# Optional: Local LLM support (to reduce API costs)
+ollama>=0.1.0             # Run Llama3, Mistral locally
+# OR
+# transformers>=4.36.0    # Hugging Face models
+# torch>=2.1.0
+
+# Graph visualization (for debugging agent flows)
+graphviz>=0.20.1
+
+# Enhanced logging for agent debugging
+loguru>=0.7.2
+
+# ============================================================================
+# COST-SAVING ALTERNATIVES
+# ============================================================================
+# Instead of OpenAI API, you can use:
+
+# 1. Ollama (Local LLM - FREE)
+#    pip install ollama
+#    ollama pull llama3
+#    ollama pull mistral
+
+# 2. Hugging Face (Local - FREE)
+#    pip install transformers torch
+#    # Use models like: mistralai/Mistral-7B-Instruct-v0.2
+
+# 3. Groq (Fast, cheap API)
+#    pip install groq
+#    # 10x faster than OpenAI, much cheaper
+
+# ============================================================================
+# INSTALLATION NOTES
+# ============================================================================
+
+# Step 1: Install basic requirements
+# pip install -r requirements_agentic.txt
+
+# Step 2: Set up API keys (choose one)
+# export OPENAI_API_KEY="sk-..."        # OpenAI (paid)
+# export GROQ_API_KEY="gsk-..."         # Groq (cheaper, faster)
+# OR use Ollama (no API key needed)
+
+# Step 3: Download spaCy model
+# python -m spacy download en_core_web_sm
+
+# Step 4: Test installation
+# python demo_agentic_ai.py
+
+# ============================================================================
+# ESTIMATED COSTS
+# ============================================================================
+
+# OpenAI API (GPT-3.5-turbo):
+# - Input: $0.0015 per 1K tokens
+# - Output: $0.002 per 1K tokens
+# - Average command: ~200 tokens = $0.0004
+# - Monthly (50 commands/day): ~$0.60
+
+# OpenAI API (GPT-4-turbo):
+# - Input: $0.01 per 1K tokens
+# - Output: $0.03 per 1K tokens
+# - Average command: ~200 tokens = $0.006
+# - Monthly (50 commands/day): ~$9
+
+# Groq API (Llama3-70B):
+# - FREE tier: 30 requests/min
+# - Paid: Much cheaper than OpenAI
+# - 10x faster responses
+
+# Ollama (Local):
+# - FREE (runs on your computer)
+# - No API costs
+# - Requires: 8GB+ RAM for Llama3-8B
+# - Privacy: Everything stays local
+
+# ============================================================================
+# RECOMMENDED SETUP (Cost-Effective)
+# ============================================================================
+
+# For Development/Testing:
+# → Use Ollama (FREE, local)
+# → Fast iteration, no API costs
+# → Good for 80% of use cases
+
+# For Production (Home use):
+# → Use Ollama for simple tasks (NLU, basic reasoning)
+# → Use GPT-3.5-turbo for complex planning
+# → Hybrid approach: ~$2-3/month
+
+# For Production (Commercial):
+# → Use GPT-4 for critical decisions
+# → Cache common responses (60% cost reduction)
+# → Consider fine-tuning smaller models
+
+# ============================================================================
+# DEVELOPMENT WORKFLOW
+# ============================================================================
+
+# 1. Start with demo (no real LLM)
+#    python demo_agentic_ai.py
+
+# 2. Add Ollama (local, free)
+#    pip install ollama
+#    ollama pull llama3
+#    # Update demo to use Ollama
+
+# 3. Test with OpenAI (paid, best quality)
+#    export OPENAI_API_KEY="..."
+#    # Use for comparison
+
+# 4. Optimize costs
+#    # Route simple tasks → Ollama
+#    # Route complex tasks → OpenAI
+#    # Cache frequent responses
+
+# ============================================================================
+# EXAMPLE: Cost-Optimized Configuration
+# ============================================================================
+
+# from langchain.llms import Ollama
+# from langchain.chat_models import ChatOpenAI
+#
+# # Free local model for simple tasks
+# local_llm = Ollama(model="llama3")
+#
+# # Paid API for complex reasoning
+# cloud_llm = ChatOpenAI(model="gpt-4")
+#
+# # Route based on complexity
+# def get_llm(task_complexity: float):
+#     if task_complexity < 0.6:
+#         return local_llm  # FREE
+#     else:
+#         return cloud_llm  # ~$0.006 per call
+#
+# # Usage
+# simple_task_llm = get_llm(0.3)  # Uses Ollama (free)
+# complex_task_llm = get_llm(0.8)  # Uses GPT-4 (paid)
+
+# ============================================================================

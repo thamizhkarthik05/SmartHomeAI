@@ -1,0 +1,26 @@
+{
+  "living_room": {
+    "temp_preference": 22,
+    "light_preference": 60,
+    "energy_weight": 1.0,
+    "description": "Main gathering area, moderate lighting and temperature"
+  },
+  "bedroom": {
+    "temp_preference": 20,
+    "light_preference": 30,
+    "energy_weight": 1.5,
+    "description": "Sleep area, cooler and dimmer, energy conservation important"
+  },
+  "office": {
+    "temp_preference": 21,
+    "light_preference": 80,
+    "energy_weight": 0.8,
+    "description": "Work area, bright lighting for productivity"
+  },
+  "kitchen": {
+    "temp_preference": 23,
+    "light_preference": 90,
+    "energy_weight": 0.9,
+    "description": "Cooking area, bright and slightly warmer"
+  }
+}
