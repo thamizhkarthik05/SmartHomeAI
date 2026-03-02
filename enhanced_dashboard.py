@@ -7,6 +7,7 @@ import plotly.graph_objects as go
 import plotly.express as px
 import time
 import random
+import os
 
 st.set_page_config(page_title="Smart Home AI Dashboard", layout="wide", page_icon="🏠")
 
@@ -37,12 +38,38 @@ st.markdown("""
 # Load the trained model
 @st.cache_resource
 def load_model():
-    try:
-        return DQN.load("smart_home_ai_brain.zip")
-    except Exception as e:
-        st.error(f"❌ Could not load model: {e}")
-        st.info("💡 Please train the model first by running: `python train.py`")
-        st.stop()
+    # NumPy compatibility fix
+    import numpy as np
+    if not hasattr(np, '_core'):
+        import numpy.core as _core
+        np._core = _core
+    
+    # Check multiple possible locations for the model
+    model_paths = [
+        "smart_home_ai_brain.zip",  # Current directory
+        "../smart_home_ai_brain.zip",  # Parent directory
+        r"d:\SmartHomeAI-main\smart_home_ai_brain.zip"  # Absolute path
+    ]
+    
+    for path in model_paths:
+        if os.path.exists(path):
+            try:
+                st.success(f"✅ Loading model from: {path}")
+                # Load with custom objects to handle compatibility
+                model = DQN.load(path, print_system_info=False)
+                return model
+            except Exception as e:
+                st.error(f"❌ Found model at {path} but could not load it: {e}")
+                st.warning(f"🔧 Error details: {str(e)}")
+                continue
+    
+    # If no model found
+    st.error("❌ Could not find model file!")
+    st.info("💡 Model locations checked:")
+    for path in model_paths:
+        st.code(f"{'✓ Found' if os.path.exists(path) else '✗ Not found'}: {path}")
+    st.info("Please make sure smart_home_ai_brain.zip exists at one of these locations")
+    st.stop()
 
 # Load environment
 @st.cache_resource

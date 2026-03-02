@@ -1,0 +1,41 @@
+# Core RL and Environment
+gymnasium>=0.29.0
+stable-baselines3>=2.1.0
+
+# Data Processing
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+plotly>=5.14.0
+
+# Dashboard and Monitoring
+streamlit>=1.28.0
+
+# IoT Simulation
+paho-mqtt>=1.6.1
+
+# Additional for Training
+tensorboard>=2.14.0
+scipy>=1.10.0
+
+# Optional (for advanced features)
+pygame>=2.5.0
+
+# ============================================================================
+# AGENTIC AI (Optional - Advanced Feature)
+# ============================================================================
+# For natural language control, multi-agent coordination, and intelligent
+# reasoning, see: requirements_agentic.txt
+# 
+# Quick add agentic AI:
+#   pip install -r requirements_agentic.txt
+#
+# Read the guide:
+#   AGENTIC_AI_INTEGRATION.md
+#
+# Try the demo (no API key needed):
+#   python demo_agentic_ai.py
+# ============================================================================
